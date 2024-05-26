@@ -1,18 +1,19 @@
-import './style.css';
-// const { log } = console;
-
-const progressBar = document.querySelector('.bar') as HTMLElement;
+const progressBar = document.querySelector('.progress-bar') as HTMLElement;
+const { log } = console;
 
 function updateProgressBar() {
-    const { scrollHeight, scrollTop } = document.documentElement;
-    const percentage = (100 / (scrollHeight - window.innerHeight)) * scrollTop;
-    if (progressBar) {
-        progressBar.style.width = `${percentage}%`;
-    }
+    const { scrollTop, scrollHeight } = document.documentElement;
+    const widthToIncrease =
+        (100 / (scrollHeight - window.innerHeight)) * scrollTop;
+    log(widthToIncrease);
+    progressBar.style.width = widthToIncrease + '%';
 }
 
-window.addEventListener('scroll', updateProgressBar);
+/*
+scrollHeight(a px value) = 100%
+1 = 100 / scrollHeight
+scrollTop = (100 / scrollHeight) * scrollTop
 
-// scrollHeight = 100%
-// 1 = 100 / scrollHeight
-// scrollTop = (100/scrollHeight) * scrollHeight
+*/
+
+window.addEventListener('scroll', updateProgressBar);
